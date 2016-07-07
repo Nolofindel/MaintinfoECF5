@@ -1,0 +1,50 @@
+﻿@model MaintinfoBo.BonDeCommande
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BonDeCommande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCommande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCommande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantiteCommande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantiteCommande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommandeEffectue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommandeEffectue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Articleid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articleid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NumCommande }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

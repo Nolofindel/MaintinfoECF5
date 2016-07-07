@@ -1,0 +1,50 @@
+﻿@model MaintinfoBo.Article
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantiteArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantiteArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeuilMinimal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeuilMinimal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DesignationArticle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
