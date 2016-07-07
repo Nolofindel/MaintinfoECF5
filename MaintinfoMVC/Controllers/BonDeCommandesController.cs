@@ -18,11 +18,12 @@ namespace MaintinfoMVC.Controllers
         // GET: BonDeCommandes
         public ActionResult Index()
         {
-            return View(db.BonDeCommandes.ToList());
+            var bonDeCommandes = db.BonDeCommandes.Include(b => b.ArticleCommande);
+            return View(bonDeCommandes.ToList());
         }
 
         // GET: BonDeCommandes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(decimal id)
         {
             if (id == null)
             {
@@ -39,6 +40,7 @@ namespace MaintinfoMVC.Controllers
         // GET: BonDeCommandes/Create
         public ActionResult Create()
         {
+            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle");
             return View();
         }
 
@@ -56,11 +58,12 @@ namespace MaintinfoMVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
         }
 
         // GET: BonDeCommandes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(decimal id)
         {
             if (id == null)
             {
@@ -71,6 +74,7 @@ namespace MaintinfoMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
         }
 
@@ -87,11 +91,12 @@ namespace MaintinfoMVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
         }
 
         // GET: BonDeCommandes/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(decimal id)
         {
             if (id == null)
             {
@@ -108,7 +113,7 @@ namespace MaintinfoMVC.Controllers
         // POST: BonDeCommandes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(decimal id)
         {
             BonDeCommande bonDeCommande = db.BonDeCommandes.Find(id);
             db.BonDeCommandes.Remove(bonDeCommande);

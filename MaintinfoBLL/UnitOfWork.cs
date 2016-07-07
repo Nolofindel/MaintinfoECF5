@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MaintinfoDAL;
 using MaintinfoBo;
-namespace BLL
+namespace MaintinfoBLL
 {
    public  class UnitOfWork:IDisposable
     {
@@ -59,7 +59,10 @@ namespace BLL
         {
             _context = new MaintinfoContext();
         }
-
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
 
         public void Dispose()
         {

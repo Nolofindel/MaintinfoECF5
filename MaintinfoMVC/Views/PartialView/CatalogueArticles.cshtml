@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MaintinfoBo.Article>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomArticle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantiteArticle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeuilMinimal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomArticle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantiteArticle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeuilMinimal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DesignationArticle }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DesignationArticle }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DesignationArticle })
+        </td>
+    </tr>
+}
+
+</table>

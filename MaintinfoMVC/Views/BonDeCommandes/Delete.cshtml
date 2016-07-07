@@ -12,6 +12,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.ArticleCommande.NomArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleCommande.NomArticle)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DateCommande)
         </dt>
 
@@ -33,14 +41,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.CommandeEffectue)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Articleid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Articleid)
         </dd>
 
     </dl>

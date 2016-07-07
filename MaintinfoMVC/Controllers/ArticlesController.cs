@@ -8,13 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using MaintinfoBo;
 using MaintinfoDAL;
+using MaintinfoBLL;
 
 namespace MaintinfoMVC.Controllers
 {
     public class ArticlesController : Controller
     {
         private MaintinfoContext db = new MaintinfoContext();
-
+       
         // GET: Articles
         public ActionResult Index()
         {

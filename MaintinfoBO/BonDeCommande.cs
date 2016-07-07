@@ -19,6 +19,7 @@ namespace MaintinfoBo
         }
         public BonDeCommande()
         {
+            this.dateCommande = DateTime.Now;
         }
         public DateTime DateCommande
         {
