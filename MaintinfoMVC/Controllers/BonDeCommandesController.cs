@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MaintinfoBo;
 using MaintinfoDAL;
+using System.Data.Entity.Validation;
 
 namespace MaintinfoMVC.Controllers
 {
@@ -44,6 +45,18 @@ namespace MaintinfoMVC.Controllers
             return View();
         }
 
+
+        // GET: BonDeCommandes/Article/
+        public ActionResult Article(string id)
+        {
+            var partialArt = new ArticlePartial();
+            Article Art = new Article();
+            Art = db.Articles.Find(id);
+            partialArt.QuantiteStock = Art.QuantiteArticle;
+            partialArt.SeuilMinimal = Art.SeuilMinimal;
+            return PartialView("~/Views/PartialView/ArticleDetail.cshtml", partialArt);
+        }
+
         // POST: BonDeCommandes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -54,8 +67,20 @@ namespace MaintinfoMVC.Controllers
             if (ModelState.IsValid)
             {
                 db.BonDeCommandes.Add(bonDeCommande);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    Article Art = new Article();
+                    Art = db.Articles.Find(bonDeCommande.Articleid);
+                    bonDeCommande.ArticleCommande = Art;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    var error = ex.EntityValidationErrors.First().ValidationErrors.First();
+                    this.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                    return View(bonDeCommande);
+                }
             }
 
             ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);

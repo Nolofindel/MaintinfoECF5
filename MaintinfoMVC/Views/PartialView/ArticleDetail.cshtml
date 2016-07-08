@@ -1,0 +1,21 @@
+﻿
+@model ArticlePartial
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Detail Article</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SeuilMinimal, "SeuilMinimal", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SeuilMinimal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuantiteStock, "QuantiteStock", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuantiteStock, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+    </div>
+}

@@ -6,25 +6,24 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>BonDeCommande</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
-            @Html.LabelFor(model => model.DateCommande, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCommande, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateCommande, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.DateCommande, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateCommande, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateCommande, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.QuantiteCommande, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.QuantiteCommande, "QuantiteCommande", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.QuantiteCommande, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.QuantiteCommande, "", new { @class = "text-danger" })
@@ -55,6 +54,8 @@
             </div>
         </div>
     </div>
+    <div id="ArticleView">
+    </div>
 }
 
 <div>
@@ -63,4 +64,36 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Articleid").change(function () {
+                var SelectedID = $(this).val();
+                $.get('/BondeCommandes/Article/' + SelectedID, function (data) {
+                    $('#ArticleView').html(data);
+                    $("#ArticleView").fadeIn("fast");
+                });
+            });
+            $.validator.unobtrusive.adapters.add("commande_superieur_seuil", ["QuantiteCommande", "SeuilMinimal", "QuantiteStock"], function (options) {
+                var attribs = {
+                    QuantiteCommande: options.param.QuantiteCommande,
+                    SeuilMinimal: options.param.SeuilMinimal,
+                    QuantiteStock: options.param.QuantiteStock
+                };
+                options.rules["commande_superieur_seuil_check"] = attribs;
+                if (options.message) {
+                    $.validator.messages.commande_superieur_seuil_check = options.message;
+                }
+            });
+            $.validator.addMethod("commande_superieur_seuil_check", function (value, element, params) {
+                if (value && (params["QuantiteCommande"] = null && params["SeuilMinimal"] != null)) {
+                    var qtecmd = $("#QuantiteCommande").val();
+                    var qteseuil = $("#SeuilMinimal").val();
+                    var qtestck = $("#QuantiteStock").val();
+                    return (qtecmd + qtestck) > qteseuil
+                }
+            });
+         
+        });
+    </script>
 }

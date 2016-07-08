@@ -135,6 +135,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ArticlePartial.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -176,7 +177,7 @@
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
-    <Content Include="Views\PartialView\CatalogueArticles.cshtml" />
+    <Content Include="Views\PartialView\ArticleDetail.cshtml" />
     <Content Include="Views\BonDeCommandes\Create.cshtml" />
     <Content Include="Views\BonDeCommandes\Delete.cshtml" />
     <Content Include="Views\BonDeCommandes\Details.cshtml" />
