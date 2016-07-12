@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BonDeCommandeRepo.cs" />
     <Compile Include="Config\ArticleConfiguration.cs" />
     <Compile Include="Config\BonDeCommandeConfiguration.cs" />
+    <Compile Include="Config\BonEntreeConfiguration.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="MaintinfoContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -62,6 +62,7 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -93,7 +94,16 @@
                     return (qtecmd + qtestck) > qteseuil
                 }
             });
-         
+            $(this).rules("add", {
+                required: true,
+                commande_superieur_seuil_check: "QuantiteCommande",
+                messages: {
+                    required: "Le Nom est requis",
+                    commande_superieur_seuil_check: "Quantite Commande doit etre correct, pas bien"
+                }
+
+            });
+
         });
     </script>
 }

@@ -17,7 +17,7 @@ namespace MaintinfoDAL
 
         public DbSet<Article> Articles { get; set; }
         public DbSet<BonDeCommande> BonDeCommandes { get; set; }
-        //public DbSet<BonEntree> BonEntrees { get; set; }
+        public DbSet<BonEntree> BonEntrees { get; set; }
         //public DbSet<BonSortie> BonSorties { get; set; }
         //public DbSet<Depanneur> Depanneurs { get; set; }
         //public DbSet<SecteurGeographique> SecteurGeographiques { get; set; }
@@ -28,12 +28,7 @@ namespace MaintinfoDAL
 
             modelBuilder.Configurations.Add(new ArticleConfiguration());
             modelBuilder.Configurations.Add(new BonDeCommandeConfiguration());
-
-            //modelBuilder.Entity<BonEntree>(entity =>{
-            //    entity.ToTable("BON_ENTREE");
-            //    entity.Property(e => e.ArticleEntree).IsRequired(true);
-            //    entity.HasOne(a => a.ArticleEntree).WithMany().HasForeignKey(d => d.ArticleEntree.DesignationArticle);
-            //});
+            modelBuilder.Configurations.Add(new BonEntreeConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -46,8 +41,8 @@ namespace MaintinfoDAL
             if (entityEntry.Entity is BonDeCommande && entityEntry.State == EntityState.Added)
             {
                 BonDeCommande bdc = entityEntry.Entity as BonDeCommande;
-                //check for uniqueness of post title 
-                if (bdc.QuantiteCommande > (bdc.ArticleCommande.QuantiteArticle+bdc.ArticleCommande.SeuilMinimal))
+                bdc.ArticleCommande=Catalogue.TrouverProduit(bdc.Articleid);
+                if (bdc.QuantiteCommande < (bdc.ArticleCommande.SeuilMinimal- bdc.ArticleCommande.QuantiteArticle))
                     result.ValidationErrors.Add(
                             new System.Data.Entity.Validation.DbValidationError("QuantiteCommande",
                             "Quantite doit etre correcte.")

@@ -1,0 +1,42 @@
+﻿@model MaintinfoBo.BonEntree
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BonEntree</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleEntree.NomArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleEntree.NomArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantiteEntree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantiteEntree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEntree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEntree)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NumEntree }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -20,7 +20,7 @@ namespace MaintinfoDAL.Config
             Property(p => p.DateCommande).HasColumnName("DATE_COMMANDE");
             Property(p => p.QuantiteCommande).HasColumnName("QUANTITE_COMMANDE");
             Property(p => p.CommandeEffectue).HasColumnName("EFFECTUE");
-            HasRequired(p => p.ArticleCommande).WithMany().HasForeignKey(f => f.Articleid);
+            HasRequired(p => p.ArticleCommande).WithMany().HasForeignKey(p => p.Articleid);
         }
     }
 }

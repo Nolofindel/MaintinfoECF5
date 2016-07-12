@@ -10,17 +10,17 @@ namespace MaintinfoBLL
    public  class UnitOfWork:IDisposable
     {
         private MaintinfoContext _context=null;
-        private Repository<BonDeCommande> bdCommandeRepo = null;
+        private BonDeCommandeRepo bdCommandeRepo = null;
         private Repository<BonEntree> bEntreeRepo = null;
         private Repository<BonSortie> bSortieRepo = null;
 
-        public Repository<BonDeCommande> BdCommandeRepo
+        public BonDeCommandeRepo BdCommandeRepo
         {
             get
             {
                 if (bdCommandeRepo == null)
                 {
-                    bdCommandeRepo = new Repository<BonDeCommande>(_context);
+                    bdCommandeRepo = new BonDeCommandeRepo(_context);
                 }
                 return bdCommandeRepo;
             }

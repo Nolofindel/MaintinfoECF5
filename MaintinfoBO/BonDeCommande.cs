@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
 namespace MaintinfoBo
 {
     public class BonDeCommande:IValidatableObject
     {
         [Key]
         private decimal numCommande;
+        [Required]
         private DateTime dateCommande;
+
         private Article articleCommande;
+        [Required]
         private int quantiteCommande;
+        [Required]
         private bool commandeEffectue;
+        [Required,StringLength(4)]
         private string articleid;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (QuantiteCommande >(articleCommande.QuantiteArticle+articleCommande.SeuilMinimal))
+            ArticleCommande = Catalogue.TrouverProduit(Articleid);
+            if (QuantiteCommande <(articleCommande.SeuilMinimal-articleCommande.QuantiteArticle))
             {
                 yield return new ValidationResult
-                 ("Quantite Commande doit etre suffisante", new[] { "quantiteCommande"});
+                 ("La Quantité Commandée doit etre suffisante", new[] { "quantiteCommande"});
             }
         }
+
         public BonDeCommande(Article articleCommande)
         {
             this.articleCommande = articleCommande;

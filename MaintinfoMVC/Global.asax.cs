@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using MaintinfoBo;
+using MaintinfoDAL;
 namespace MaintinfoMVC
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,6 +17,9 @@ namespace MaintinfoMVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MaintinfoContext cat = new MaintinfoContext();
+            Catalogue.RemplirCatalogue(cat.Articles.ToList());
+            cat.Dispose();
         }
     }
 }

@@ -1,12 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MaintinfoBo
 {
     public class BonEntree
     {
+        [Key]
+        private decimal numEntree;
         private Article articleEntree;
         private int quantiteEntree;
         private DateTime dateEntree;
+        private string articleid;
         public BonEntree()
         {
 
@@ -54,6 +58,32 @@ namespace MaintinfoBo
             set
             {
                 dateEntree = value;
+            }
+        }
+
+        public int NumEntree
+        {
+            get
+            {
+                return numEntree;
+            }
+
+            set
+            {
+                numEntree = value;
+            }
+        }
+
+        public string Articleid
+        {
+            get
+            {
+                return articleid;
+            }
+
+            set
+            {
+                articleid = value;
             }
         }
     }

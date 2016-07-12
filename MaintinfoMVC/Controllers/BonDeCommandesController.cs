@@ -8,19 +8,25 @@ using System.Web;
 using System.Web.Mvc;
 using MaintinfoBo;
 using MaintinfoDAL;
+using MaintinfoBLL;
 using System.Data.Entity.Validation;
 
 namespace MaintinfoMVC.Controllers
 {
     public class BonDeCommandesController : Controller
     {
-        private MaintinfoContext db = new MaintinfoContext();
+        private UnitOfWork uw = new UnitOfWork();
 
         // GET: BonDeCommandes
         public ActionResult Index()
         {
-            var bonDeCommandes = db.BonDeCommandes.Include(b => b.ArticleCommande);
-            return View(bonDeCommandes.ToList());
+            List<BonDeCommande> bdcs = new List<BonDeCommande>();
+            bdcs = uw.BdCommandeRepo.GetAll().ToList();
+            foreach (BonDeCommande bdc in bdcs)
+            {
+                bdc.ArticleCommande = Catalogue.TrouverProduit(bdc.Articleid);
+            }
+            return View(uw.BdCommandeRepo.GetAll());
         }
 
         // GET: BonDeCommandes/Details/5
@@ -30,7 +36,7 @@ namespace MaintinfoMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BonDeCommande bonDeCommande = db.BonDeCommandes.Find(id);
+            BonDeCommande bonDeCommande = uw.BdCommandeRepo.Get(p => p.NumCommande == id);
             if (bonDeCommande == null)
             {
                 return HttpNotFound();
@@ -41,7 +47,7 @@ namespace MaintinfoMVC.Controllers
         // GET: BonDeCommandes/Create
         public ActionResult Create()
         {
-            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle");
+            ViewBag.Articleid = new SelectList(Catalogue.Instance.RecupererCatalogue(), "DesignationArticle", "NomArticle");
             return View();
         }
 
@@ -51,7 +57,7 @@ namespace MaintinfoMVC.Controllers
         {
             var partialArt = new ArticlePartial();
             Article Art = new Article();
-            Art = db.Articles.Find(id);
+            Art = Catalogue.TrouverProduit(id);
             partialArt.QuantiteStock = Art.QuantiteArticle;
             partialArt.SeuilMinimal = Art.SeuilMinimal;
             return PartialView("~/Views/PartialView/ArticleDetail.cshtml", partialArt);
@@ -62,17 +68,17 @@ namespace MaintinfoMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumCommande,DateCommande,QuantiteCommande,CommandeEffectue,Articleid")] BonDeCommande bonDeCommande)
+        public ActionResult Create([Bind(Include = "DateCommande,QuantiteCommande,CommandeEffectue,Articleid")] BonDeCommande bonDeCommande)
         {
             if (ModelState.IsValid)
             {
-                db.BonDeCommandes.Add(bonDeCommande);
+               uw.BdCommandeRepo.Add(bonDeCommande);
                 try
                 {
-                    Article Art = new Article();
-                    Art = db.Articles.Find(bonDeCommande.Articleid);
-                    bonDeCommande.ArticleCommande = Art;
-                    db.SaveChanges();
+                    //Article Art = new Article();
+                    //Art = db.Articles.Find(bonDeCommande.Articleid);
+                    //bonDeCommande.ArticleCommande = Art;
+                    uw.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 catch (DbEntityValidationException ex)
@@ -83,7 +89,7 @@ namespace MaintinfoMVC.Controllers
                 }
             }
 
-            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
+            ViewBag.Articleid = new SelectList(Catalogue.Instance.RecupererCatalogue(), "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
         }
 
@@ -94,12 +100,16 @@ namespace MaintinfoMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BonDeCommande bonDeCommande = db.BonDeCommandes.Find(id);
+            BonDeCommande bonDeCommande = uw.BdCommandeRepo.Get(p => p.NumCommande == id);
             if (bonDeCommande == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
+            if (bonDeCommande.CommandeEffectue == true)
+            {
+
+            }
+            ViewBag.Articleid = new SelectList(Catalogue.Instance.RecupererCatalogue(), "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
         }
 
@@ -112,11 +122,11 @@ namespace MaintinfoMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bonDeCommande).State = EntityState.Modified;
-                db.SaveChanges();
+                uw.BdCommandeRepo.Update(bonDeCommande);
+                uw.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Articleid = new SelectList(db.Articles, "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
+            ViewBag.Articleid = new SelectList(Catalogue.Instance.RecupererCatalogue(), "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
         }
 
@@ -127,7 +137,7 @@ namespace MaintinfoMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BonDeCommande bonDeCommande = db.BonDeCommandes.Find(id);
+            BonDeCommande bonDeCommande = uw.BdCommandeRepo.Get(p => p.NumCommande == id);
             if (bonDeCommande == null)
             {
                 return HttpNotFound();
@@ -140,9 +150,9 @@ namespace MaintinfoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
-            BonDeCommande bonDeCommande = db.BonDeCommandes.Find(id);
-            db.BonDeCommandes.Remove(bonDeCommande);
-            db.SaveChanges();
+            BonDeCommande bonDeCommande = uw.BdCommandeRepo.Get(p => p.NumCommande == id);
+            uw.BdCommandeRepo.Delete(bonDeCommande);
+            uw.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -150,7 +160,7 @@ namespace MaintinfoMVC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }

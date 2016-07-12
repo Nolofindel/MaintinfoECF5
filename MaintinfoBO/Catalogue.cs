@@ -28,6 +28,10 @@ namespace MaintinfoBo
                 return _instance.Value;
             }
         }
+        public static Article TrouverProduit(string code)
+        {
+            return Instance.Cat.Find(p=>p.DesignationArticle==code);
+        }
     public static  void RemplirCatalogue(List<Article> arts)
         {
             ViderCatalogue();

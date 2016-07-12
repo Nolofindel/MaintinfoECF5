@@ -26,26 +26,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArticleCommande.NomArticle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCommande)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuantiteCommande)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommandeEffectue)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NumCommande }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NumCommande }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NumCommande })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArticleCommande.NomArticle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCommande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantiteCommande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommandeEffectue)
+            </td>
+            @if (item.CommandeEffectue == true)
+            {
+                <td>@Html.ActionLink("Details", "Details", new { id = item.NumCommande }) </td>}
+            else
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NumCommande }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NumCommande }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NumCommande })
+                </td>
+            }
+        </tr>
+    }
 </table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+    </script>
+}
