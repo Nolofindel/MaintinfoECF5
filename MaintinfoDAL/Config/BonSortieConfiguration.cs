@@ -15,10 +15,11 @@ namespace MaintinfoDAL.Config
         {
             ToTable("BON_SORTIE");
             HasKey(k => k.NumSortie);
-            Property(p => p.NumSortie).HasColumnName("NUM_SORTIE");
+            Property(p => p.NumSortie).HasColumnName("NUMERO_SORTIE").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(p => p.Articleid).HasColumnName("DESIGNATION_ARTICLE");
             Property(p => p.QuantiteSortie).HasColumnName("QUANTITE_SORTIE");
             Property(p => p.DateDemande).HasColumnName("DATE_SORTIE");
+            Property(p => p.NumDepanneur).HasColumnName("MATRICULE_DEPANNEUR");
             HasRequired(p => p.ArticleSortie).WithMany().HasForeignKey(p => p.Articleid);
             HasRequired(p => p.Depanneur).WithMany().HasForeignKey(p => p.NumDepanneur);
         }
