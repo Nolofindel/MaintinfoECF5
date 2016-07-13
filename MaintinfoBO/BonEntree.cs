@@ -61,7 +61,7 @@ namespace MaintinfoBo
             }
         }
 
-        public int NumEntree
+        public decimal NumEntree
         {
             get
             {

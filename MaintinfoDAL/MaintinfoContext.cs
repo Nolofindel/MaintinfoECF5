@@ -18,10 +18,10 @@ namespace MaintinfoDAL
         public DbSet<Article> Articles { get; set; }
         public DbSet<BonDeCommande> BonDeCommandes { get; set; }
         public DbSet<BonEntree> BonEntrees { get; set; }
-        //public DbSet<BonSortie> BonSorties { get; set; }
-        //public DbSet<Depanneur> Depanneurs { get; set; }
-        //public DbSet<SecteurGeographique> SecteurGeographiques { get; set; }
-        //public DbSet<Specialite> Specialites { get; set; }
+        public DbSet<BonSortie> BonSorties { get; set; }
+        public DbSet<Depanneur> Depanneurs { get; set; }
+        public DbSet<SecteurGeographique> SecteurGeographiques { get; set; }
+        public DbSet<Specialite> Specialites { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,7 +29,10 @@ namespace MaintinfoDAL
             modelBuilder.Configurations.Add(new ArticleConfiguration());
             modelBuilder.Configurations.Add(new BonDeCommandeConfiguration());
             modelBuilder.Configurations.Add(new BonEntreeConfiguration());
-
+            modelBuilder.Configurations.Add(new BonSortieConfiguration());
+            modelBuilder.Configurations.Add(new DepanneurConfiguration());
+            modelBuilder.Configurations.Add(new SecteurConfiguration());
+            modelBuilder.Configurations.Add(new SpecialiteConfiguration());
             base.OnModelCreating(modelBuilder);
         }
         protected override DbEntityValidationResult ValidateEntity

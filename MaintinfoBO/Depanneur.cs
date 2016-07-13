@@ -1,11 +1,16 @@
-﻿namespace MaintinfoBo
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MaintinfoBo
 {
     public class Depanneur
     {
         private string nomDepanneur;
         private Specialite specialiteDepanneur;
         private SecteurGeographique secteurGeographiqueDepanneur;
-
+        [Key]
+        private int matriculeDepanneur;
+        private int numSpecialite;
+        private int numSecteur;
         public Depanneur(string nomDepanneur, Specialite specialiteDepanneur, SecteurGeographique secteurGeographiqueDepanneur)
         {
             this.nomDepanneur = nomDepanneur;
@@ -42,7 +47,7 @@
             }
         }
 
-        internal SecteurGeographique SecteurGeographiqueDepanneur
+        public SecteurGeographique SecteurGeographiqueDepanneur
         {
             get
             {
@@ -54,6 +59,46 @@
                 secteurGeographiqueDepanneur = value;
             }
         }
+
+        public int MatriculeDepanneur
+        {
+            get
+            {
+                return matriculeDepanneur;
+            }
+
+            set
+            {
+                matriculeDepanneur = value;
+            }
+        }
+
+        public int NumSpecialite
+        {
+            get
+            {
+                return numSpecialite;
+            }
+
+            set
+            {
+                numSpecialite = value;
+            }
+        }
+
+        public int NumSecteur
+        {
+            get
+            {
+                return numSecteur;
+            }
+
+            set
+            {
+                numSecteur = value;
+            }
+        }
+
         public override string ToString()
         {
             return nomDepanneur;

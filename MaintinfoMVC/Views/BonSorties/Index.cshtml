@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MaintinfoBo.BonSortie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticleSortie.NomArticle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Depanneur.NomDepanneur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantiteSortie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDemande)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticleSortie.NomArticle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Depanneur.NomDepanneur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantiteSortie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDemande)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NumSortie }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NumSortie }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NumSortie })
+        </td>
+    </tr>
+}
+
+</table>

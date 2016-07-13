@@ -50,9 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BonDeCommandeRepo.cs" />
+    <Compile Include="BonSortieRepository.cs" />
     <Compile Include="Config\ArticleConfiguration.cs" />
     <Compile Include="Config\BonDeCommandeConfiguration.cs" />
     <Compile Include="Config\BonEntreeConfiguration.cs" />
+    <Compile Include="Config\BonSortieConfiguration.cs" />
+    <Compile Include="Config\DepanneurConfiguration.cs" />
+    <Compile Include="Config\SecteurConfiguration.cs" />
+    <Compile Include="Config\SpecialiteConfiguration.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="MaintinfoContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

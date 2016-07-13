@@ -107,7 +107,7 @@ namespace MaintinfoMVC.Controllers
             }
             if (bonDeCommande.CommandeEffectue == true)
             {
-
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             ViewBag.Articleid = new SelectList(Catalogue.Instance.RecupererCatalogue(), "DesignationArticle", "NomArticle", bonDeCommande.Articleid);
             return View(bonDeCommande);
@@ -141,6 +141,10 @@ namespace MaintinfoMVC.Controllers
             if (bonDeCommande == null)
             {
                 return HttpNotFound();
+            }
+            if (bonDeCommande.CommandeEffectue == true)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(bonDeCommande);
         }

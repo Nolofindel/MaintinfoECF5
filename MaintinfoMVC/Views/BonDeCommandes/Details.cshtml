@@ -44,7 +44,16 @@
 
     </dl>
 </div>
+@if (Model.CommandeEffectue == true)
+{
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NumCommande }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.NumCommande }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

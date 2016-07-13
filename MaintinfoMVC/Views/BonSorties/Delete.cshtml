@@ -1,0 +1,56 @@
+﻿@model MaintinfoBo.BonSortie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BonSortie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleSortie.NomArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleSortie.NomArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Depanneur.NomDepanneur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Depanneur.NomDepanneur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantiteSortie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantiteSortie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDemande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDemande)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

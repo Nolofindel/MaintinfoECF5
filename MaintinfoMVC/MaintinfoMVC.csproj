@@ -131,6 +131,7 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BonDeCommandesController.cs" />
     <Compile Include="Controllers\BonEntreesController.cs" />
+    <Compile Include="Controllers\BonSortiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,22 +140,64 @@
     <Compile Include="ViewModel\ArticlePartial.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Themes\base\accordion.css" />
+    <Content Include="Content\Themes\base\all.css" />
+    <Content Include="Content\Themes\base\autocomplete.css" />
+    <Content Include="Content\Themes\base\base.css" />
+    <Content Include="Content\Themes\base\button.css" />
+    <Content Include="Content\Themes\base\core.css" />
+    <Content Include="Content\Themes\base\datepicker.css" />
+    <Content Include="Content\Themes\base\dialog.css" />
+    <Content Include="Content\Themes\base\draggable.css" />
+    <Content Include="Content\Themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Themes\base\menu.css" />
+    <Content Include="Content\Themes\base\progressbar.css" />
+    <Content Include="Content\Themes\base\resizable.css" />
+    <Content Include="Content\Themes\base\selectable.css" />
+    <Content Include="Content\Themes\base\selectmenu.css" />
+    <Content Include="Content\Themes\base\slider.css" />
+    <Content Include="Content\Themes\base\sortable.css" />
+    <Content Include="Content\Themes\base\spinner.css" />
+    <Content Include="Content\Themes\base\tabs.css" />
+    <Content Include="Content\Themes\base\theme.css" />
+    <Content Include="Content\Themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.0.0.intellisense.js" />
-    <Content Include="Scripts\jquery-3.0.0.js" />
-    <Content Include="Scripts\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -193,15 +236,17 @@
     <Content Include="Views\BonEntrees\Details.cshtml" />
     <Content Include="Views\BonEntrees\Edit.cshtml" />
     <Content Include="Views\BonEntrees\Index.cshtml" />
+    <Content Include="Views\BonSorties\Create.cshtml" />
+    <Content Include="Views\BonSorties\Delete.cshtml" />
+    <Content Include="Views\BonSorties\Details.cshtml" />
+    <Content Include="Views\BonSorties\Edit.cshtml" />
+    <Content Include="Views\BonSorties\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
