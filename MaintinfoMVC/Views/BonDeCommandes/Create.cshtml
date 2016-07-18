@@ -1,10 +1,10 @@
 ﻿@model MaintinfoBo.BonDeCommande
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nouvelle Commande";
 }
 
-<h2>Create</h2>
+<h2>Création Bon de Commande</h2>
 
 @using (Html.BeginForm())
 {
@@ -23,7 +23,7 @@
             </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.QuantiteCommande, "QuantiteCommande", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.QuantiteCommande, "Quantité Commandée", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.QuantiteCommande, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.QuantiteCommande, "", new { @class = "text-danger" })
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CommandeEffectue, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CommandeEffectue,"Commande Effectuée", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.CommandeEffectue)
@@ -41,9 +41,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Articleid, "Articleid", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Articleid, "Article", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Articleid", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Articleid", null, "Selectionnez l'article", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Articleid, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +59,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index")
 </div>
 
 }
@@ -99,7 +99,7 @@
                 commande_superieur_seuil_check: "QuantiteCommande",
                 messages: {
                     required: "Le Nom est requis",
-                    commande_superieur_seuil_check: "Quantite Commande doit etre correct, pas bien"
+                    commande_superieur_seuil_check: "Quantite Commande doit etre correct"
                 }
 
             });

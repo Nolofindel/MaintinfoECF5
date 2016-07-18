@@ -55,12 +55,15 @@ namespace MaintinfoMVC.Controllers
         // GET: BonDeCommandes/Article/
         public ActionResult Article(string id)
         {
+            if (id!=null) {
             var partialArt = new ArticlePartial();
             Article Art = new Article();
             Art = Catalogue.TrouverProduit(id);
             partialArt.QuantiteStock = Art.QuantiteArticle;
             partialArt.SeuilMinimal = Art.SeuilMinimal;
             return PartialView("~/Views/PartialView/ArticleDetail.cshtml", partialArt);
+            }
+            return null;
         }
 
         // POST: BonDeCommandes/Create

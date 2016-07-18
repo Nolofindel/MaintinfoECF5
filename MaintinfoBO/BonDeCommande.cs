@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace MaintinfoBo
 {
-    public class BonDeCommande:IValidatableObject
+    public class BonDeCommande : IValidatableObject
     {
         [Key]
         private decimal numCommande;
@@ -15,16 +15,24 @@ namespace MaintinfoBo
         private int quantiteCommande;
         [Required]
         private bool commandeEffectue;
-        [Required,StringLength(4)]
+        [Required, StringLength(4)]
         private string articleid;
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            ArticleCommande = Catalogue.TrouverProduit(Articleid);
-            if (QuantiteCommande <(articleCommande.SeuilMinimal-articleCommande.QuantiteArticle))
+            if (Articleid == null)
             {
                 yield return new ValidationResult
-                 ("La Quantité Commandée doit etre suffisante", new[] { "quantiteCommande"});
+                 ("L'article doit être sélectionné", new[] { "articleid" });
+            }
+            else
+            {
+                ArticleCommande = Catalogue.TrouverProduit(Articleid);
+                if (QuantiteCommande < (articleCommande.SeuilMinimal - articleCommande.QuantiteArticle))
+                {
+                    yield return new ValidationResult
+                     ("La Quantité Commandée doit etre suffisante", new[] { "quantiteCommande" });
+                }
             }
         }
 
